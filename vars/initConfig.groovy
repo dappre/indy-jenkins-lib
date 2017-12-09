@@ -1,4 +1,6 @@
-#!/usr/bin/env groovy
+#!groovy
+
+package indyjenkinslib
 
 def call() {
 	// Define parameters and their default values
