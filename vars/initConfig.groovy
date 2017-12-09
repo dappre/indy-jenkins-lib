@@ -12,8 +12,8 @@ def call() {
 			booleanParam(name: 'compile', defaultValue: true, description: 'Enable compilation'),
 			booleanParam(name: 'test', defaultValue: true, description: 'Enable tests'),
 			booleanParam(name: 'package', defaultValue: true, description: 'Enable packaging'),
-			booleanParam(name: 'release', defaultValue: true, description: 'Enable release (if relevant)'),
-			booleanParam(name: 'delivery', defaultValue: true, description: 'Enable delivery (if relevant)'),
+			booleanParam(name: 'release', defaultValue: false, description: 'Enable release (if relevant)'),
+			booleanParam(name: 'delivery', defaultValue: false, description: 'Enable delivery (if relevant)'),
 			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)')
 		])
 	])
