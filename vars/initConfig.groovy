@@ -15,6 +15,8 @@ def call(String name) {
 			booleanParam(name: 'stRelease', defaultValue: false, description: 'Enable release stage (if relevant)'),
 			booleanParam(name: 'stDeliver', defaultValue: false, description: 'Enable delivery stage (if relevant)'),
 			booleanParam(name: 'stNotify', defaultValue: true, description: 'Enable notification stage (if possible)'),
+			// Label names required to run stages
+			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
 			// Options to tune the above stages 
 			booleanParam(name: 'verbose', defaultValue: false, description: 'Enable verbose mode'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
@@ -41,6 +43,9 @@ def call(String name) {
 			release:	params.stRelease,
 			deliver:	params.stDeliver,
 			notify:		params.stNotify,
+		],
+		lb: [
+			docker:		params.lbDocker,
 		],
 		// Other options
 		verbose:		params.verbose,

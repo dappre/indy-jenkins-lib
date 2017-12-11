@@ -4,7 +4,9 @@ def call(config, tasks = []) {
 	if (config.st.validate) {
 		stage('Validate') {
 			if (config.verbose) echo "Validation for ${config.name} begins here"
-			staticCodeValidation()
+			label(config.lb.docker) {
+				staticCodeValidation()
+			}
 			if (config.verbose) echo "Validation for ${config.name} ends here"
 		}
 	} else {
