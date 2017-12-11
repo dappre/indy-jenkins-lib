@@ -11,7 +11,7 @@ def call() {
 			booleanParam(name: 'package', defaultValue: true, description: 'Enable packaging'),
 			booleanParam(name: 'release', defaultValue: false, description: 'Enable release (if relevant)'),
 			booleanParam(name: 'delivery', defaultValue: false, description: 'Enable delivery (if relevant)'),
-			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)')
+			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)'),
 			booleanParam(name: 'dry', defaultValue: false, description: 'Enable dry mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'fast', defaultValue: false, description: 'Enable fail fast option'),
 			string(name: 'libExtRemote', defaultValue: 'https://code.digital-me.nl/git/DEVops/IndyJenkinsLibExt.git', description: 'Git URL of the shared library'),
