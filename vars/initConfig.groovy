@@ -1,17 +1,18 @@
 #!groovy
 
-package indyjenkinslib
+stPackage indyjenkinslib
 
 def call(String name) {
 	// Define parameters and their default values
 	properties([
 		parameters([
-			booleanParam(name: 'compilation', defaultValue: true, description: 'Enable compilation'),
-			booleanParam(name: 'testing', defaultValue: true, description: 'Enable testing'),
-			booleanParam(name: 'packaging', defaultValue: true, description: 'Enable packaging'),
-			booleanParam(name: 'release', defaultValue: false, description: 'Enable release (if relevant)'),
-			booleanParam(name: 'delivery', defaultValue: false, description: 'Enable delivery (if relevant)'),
-			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)'),
+			booleanParam(name: 'stValidate', defaultValue: true, description: 'Enable validation stage'),
+			booleanParam(name: 'stCompile', defaultValue: true, description: 'Enable compilation stage'),
+			booleanParam(name: 'stTest', defaultValue: true, description: 'Enable testing stage'),
+			booleanParam(name: 'stPackage', defaultValue: true, description: 'Enable packaging stage'),
+			booleanParam(name: 'stRelease', defaultValue: false, description: 'Enable release stage (if relevant)'),
+			booleanParam(name: 'stDeliver', defaultValue: false, description: 'Enable delivery stage (if relevant)'),
+			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification stage (if possible)'),
 			booleanParam(name: 'verbose', defaultValue: false, description: 'Enable verbose mode'),
 			booleanParam(name: 'dry', defaultValue: false, description: 'Enable dry mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'fast', defaultValue: false, description: 'Enable fail fast option'),
@@ -23,15 +24,20 @@ def call(String name) {
 
 	// Define the configuration options based on the parameters
 	def config = [
-		compilation: params.compilation,
-		testing: params.testing,
-		packaging: params.packaging,
-		release: params.release,
-		delivery: params.delivery,
-		notify: params.notify,
-		verbose: params.verbose,
-		dry: params.dry,
-		fast: params.fast,
+		st = [
+			validate:	params.stValidate,
+			compile:	params.stCompile,
+			test:		params.stTest,
+			package:	params.stPackage,
+			release:	params.stRelease,
+			deliver:	params.stDeliver,
+			notify:		params.stNotify,
+		],
+		op = [
+			verbose:	params.verbose,
+			dry:		params.dry,
+			fast:		params.fast,
+		],
 		extended: false,
 		name: name,
 	]
