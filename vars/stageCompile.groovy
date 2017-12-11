@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy​
 
-def call() {
-	if (config.compile ) {
+def call(config) {
+	if (config.compile) {
 		stage('Compilation') {
 			echo 'Compilation goes here'
 		}

@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy​
 
-def call() {
+def call(config) {
 	echo 'Packaging goes here'
 }
