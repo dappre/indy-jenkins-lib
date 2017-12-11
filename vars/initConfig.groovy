@@ -24,7 +24,7 @@ def call(String name) {
 
 	// Define the configuration options based on the parameters
 	def config = [
-		st = [
+		st: [
 			validate:	params.stValidate,
 			compile:	params.stCompile,
 			test:		params.stTest,
@@ -33,7 +33,7 @@ def call(String name) {
 			deliver:	params.stDeliver,
 			notify:		params.stNotify,
 		],
-		op = [
+		op: [
 			verbose:	params.verbose,
 			dry:		params.dry,
 			fast:		params.fast,
