@@ -48,7 +48,7 @@ def call() {
 	} catch (error) {
 		echo 'Extended shared library could NOT be loaded: extended feature are disabled'
 		if(config.verbose) {
-			echo "Error message:\n(${error.message})"
+			echo "Warning message:\n${error.message}"
 		}
 		config.extended = false
 	}
