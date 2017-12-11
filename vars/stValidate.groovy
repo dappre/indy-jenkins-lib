@@ -1,9 +1,11 @@
 #!/usr/bin/env groovy​
 
-def call(config, codes = []) {
+def call(config, tasks = []) {
 	if (config.st.validate) {
 		stage('Validate') {
-			echo "Validation for ${config.name} goes here"
+			if (config.verbose) echo "Validation for ${config.name} begins here"
+			staticCodeValidation()
+			if (config.verbose) echo "Validation for ${config.name} ends here"
 		}
 	} else {
 		echo "Validation will be skipped (config.st.validate = ${config.st.validate})"
