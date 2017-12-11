@@ -12,6 +12,7 @@ def call() {
 			booleanParam(name: 'release', defaultValue: false, description: 'Enable release (if relevant)'),
 			booleanParam(name: 'delivery', defaultValue: false, description: 'Enable delivery (if relevant)'),
 			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)'),
+			booleanParam(name: 'verbose', defaultValue: false, description: 'Enable verbose mode'),
 			booleanParam(name: 'dry', defaultValue: false, description: 'Enable dry mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'fast', defaultValue: false, description: 'Enable fail fast option'),
 			string(name: 'libExtRemote', defaultValue: 'https://code.digital-me.nl/git/DEVops/IndyJenkinsLibExt.git', description: 'Git URL of the shared library'),
@@ -22,14 +23,15 @@ def call() {
 
 	// Define the configuration options based on the parameters
 	def config = [
-		dry: params.dry,
-		fast: params.fast,
 		compile: params.compile,
 		test: params.test,
 		package: params.package,
 		release: params.release,
 		delivery: params.delivery,
 		notify: params.notify,
+		verbose: params.verbose,
+		dry: params.dry,
+		fast: params.fast,
 		extended: false,
 	]
 
@@ -44,7 +46,10 @@ def call() {
 		echo 'Extended shared library loaded: extended feature are supported'
 		config.extended = true
 	} catch (error) {
-		echo "Extended shared library NOT loaded: extended feature are disabled (${error.message})"
+		echo 'Extended shared library could NOT be loaded: extended feature are disabled'
+		if(config.verbose) {
+			echo "Error message:\n(${error.message})"
+		}
 		config.extended = false
 	}
 
