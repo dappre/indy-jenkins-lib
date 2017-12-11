@@ -3,9 +3,9 @@
 def call(config) {
 	if (config.packaging) {
 		stage('Packaging') {
-			echo 'Packaging goes here'
+			echo "Packaging for ${config.name} goes here"
 		}
 	} else {
-		echo "Packaging will be skipped (config.package = ${config.package})"
+		echo "Packaging will be skipped (config.packaging = ${config.packaging})"
 	}
 }

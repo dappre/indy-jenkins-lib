@@ -3,9 +3,9 @@
 def call(config) {
 	if (config.compilation) {
 		stage('Compilation') {
-			echo 'Compilation goes here'
+			echo "Compilation for ${config.name} goes here"
 		}
 	} else {
-		echo "Compilation will be skipped (config.compile = ${config.compile})"
+		echo "Compilation will be skipped (config.compilation = ${config.compilation})"
 	}
 }
