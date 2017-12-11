@@ -2,7 +2,7 @@
 
 package indyjenkinslib
 
-def call() {
+def call(String name) {
 	// Define parameters and their default values
 	properties([
 		parameters([
@@ -33,6 +33,7 @@ def call() {
 		dry: params.dry,
 		fast: params.fast,
 		extended: false,
+		name: name,
 	]
 
 	// Load Extended library if available
