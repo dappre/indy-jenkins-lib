@@ -6,9 +6,9 @@ def call() {
 	// Define parameters and their default values
 	properties([
 		parameters([
-			booleanParam(name: 'compile', defaultValue: true, description: 'Enable compilation'),
-			booleanParam(name: 'test', defaultValue: true, description: 'Enable tests'),
-			booleanParam(name: 'package', defaultValue: true, description: 'Enable packaging'),
+			booleanParam(name: 'compilation', defaultValue: true, description: 'Enable compilation'),
+			booleanParam(name: 'testing', defaultValue: true, description: 'Enable testing'),
+			booleanParam(name: 'packaging', defaultValue: true, description: 'Enable packaging'),
 			booleanParam(name: 'release', defaultValue: false, description: 'Enable release (if relevant)'),
 			booleanParam(name: 'delivery', defaultValue: false, description: 'Enable delivery (if relevant)'),
 			booleanParam(name: 'notify', defaultValue: true, description: 'Enable notification (if possible)'),
@@ -23,9 +23,9 @@ def call() {
 
 	// Define the configuration options based on the parameters
 	def config = [
-		compile: params.compile,
-		test: params.test,
-		package: params.package,
+		compilation: params.compilation,
+		testing: params.testing,
+		packaging: params.packaging,
 		release: params.release,
 		delivery: params.delivery,
 		notify: params.notify,
