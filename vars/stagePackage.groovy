@@ -1,5 +1,9 @@
 #!/usr/bin/env groovy​
 
 def call(config) {
-	echo 'Packaging goes here'
+	if (config.package) {
+		echo 'Packaging goes here'
+	} else {
+		echo "Packaging will be skipped (config.package = ${config.package})"
+	}
 }
