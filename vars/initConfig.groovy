@@ -6,15 +6,17 @@ def call(String name) {
 	// Define parameters and their default values
 	properties([
 		parameters([
-			// Stages to run
-			booleanParam(name: 'stValidate', defaultValue: true, description: 'Enable validation stage'),
-			booleanParam(name: 'stCompile', defaultValue: true, description: 'Enable compilation stage'),
-			booleanParam(name: 'stTest', defaultValue: true, description: 'Enable testing stage'),
-			booleanParam(name: 'stPackage', defaultValue: true, description: 'Enable packaging stage'),
-			booleanParam(name: 'stApprove', defaultValue: false, description: 'Enable approval stage (if relevant)'),
-			booleanParam(name: 'stRelease', defaultValue: false, description: 'Enable release stage (if relevant)'),
-			booleanParam(name: 'stDeliver', defaultValue: false, description: 'Enable delivery stage (if relevant)'),
-			booleanParam(name: 'stNotify', defaultValue: true, description: 'Enable notification stage (if possible)'),
+			// Allow to run extended stages when triggered manually
+			booleanParam(name: 'extended', defaultValue: false, description: 'Enable extanded stages (requires extended lib)'),
+			// Allow to skip some stages for testing purpose
+			booleanParam(name: 'skipValidate', defaultValue: false, description: 'Skip validation stage'),
+			booleanParam(name: 'skipCompile', defaultValue: false, description: 'Skip compilation stage'),
+			booleanParam(name: 'skipTest', defaultValue: false, description: 'Skip testing stage'),
+			booleanParam(name: 'skipPackage', defaultValue: false, description: 'Skip packaging stage'),
+			booleanParam(name: 'skipApprove', defaultValue: false, description: 'Skip approval stage (requires extended lib)'),
+			booleanParam(name: 'skipRelease', defaultValue: false, description: 'Skip release stage (requires extended lib)'),
+			booleanParam(name: 'skipDeliver', defaultValue: false, description: 'Skip delivery stage (requires extended lib)'),
+			booleanParam(name: 'skipNotify', defaultValue: false, description: 'Skip notification stage (requires extended lib)'),
 			// Label names required to run stages
 			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
 			// Options to tune the above stages 
@@ -33,16 +35,18 @@ def call(String name) {
 	def config = [
 		// Project name
 		name: 			name,
+		// Flag for the extended lib support
+		extended: 		params.extended,
 		// Stages
 		st: [
-			validate:	params.stValidate,
-			compile:	params.stCompile,
-			test:		params.stTest,
-			package:	params.stPackage,
-			approve:	params.stApprove,
-			release:	params.stRelease,
-			deliver:	params.stDeliver,
-			notify:		params.stNotify,
+			validate:	!params.skipValidate,
+			compile:	!params.skipCompile,
+			test:		!params.skipTest,
+			package:	!params.skipPackage,
+			approve:	!params.skipApprove,
+			release:	!params.skipRelease,
+			deliver:	!params.skipDeliver,
+			notify:		!params.skipNotify,
 		],
 		lb: [
 			docker:		params.lbDocker,
@@ -52,8 +56,6 @@ def call(String name) {
 		dryRun:			params.dryRun,
 		failfast:		params.failFast,
 		pkgDeps:		params.pkgDeps,
-		// Flag for the extend support
-		extended: 		false,
 	]
 
 	// Load Extended library if available
@@ -67,10 +69,9 @@ def call(String name) {
 				credentialsId: params.libExtCredId
 			])
 		)
-		echo 'Extended shared library loaded: extended feature are supported'
-		config.extended = true
+		echo 'Extended shared library loaded: extended features are supported'
 	} catch (error) {
-		echo 'Extended shared library could NOT be loaded: extended feature are disabled'
+		echo 'Extended shared library could NOT be loaded: extended features are disabled'
 		if(config.verbose) {
 			echo "Warning message:\n${error.message}"
 		}
