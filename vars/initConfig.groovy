@@ -1,6 +1,6 @@
 #!groovy
 
-package indyjenkinslib
+package nl.digital-me.indy
 
 def call(String name) {
 	// Define parameters and their default values
@@ -32,7 +32,8 @@ def call(String name) {
 	])
 
 	// Define the configuration stages and options based on the parameters
-	def config = [
+	def config = new plConfig(name, params)
+/*	def config = [
 		// Project name
 		name: 			name,
 		// Flag for the extended lib support
@@ -57,7 +58,7 @@ def call(String name) {
 		failfast:		params.failFast,
 		pkgDeps:		params.pkgDeps,
 	]
-
+*/
 	// Load Extended library if available
 	echo 'Trying to load Extended library...'
 	try {
