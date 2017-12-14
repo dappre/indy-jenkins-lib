@@ -19,6 +19,9 @@ def call(String name) {
 			booleanParam(name: 'skipNotify', defaultValue: false, description: 'Skip notification stage (requires extended lib)'),
 			// Label names required to run stages
 			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
+			
+			// Distribution to build on
+			choice(name: 'distribution', choices: ["ubuntu", "centos", "windows", "mac"].join("\n"), description: 'Choose on which distribution to build'),
 			// Options to tune the above stages 
 			booleanParam(name: 'verbose', defaultValue: false, description: 'Enable verbose mode'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
