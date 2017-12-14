@@ -23,7 +23,7 @@ def call(String name) {
 			// Distribution to build on
 			choice(name: 'distribution', choices: ["ubuntu", "centos", "windows", "mac"].join("\n"), description: 'Choose on which distribution to build'),
 			// Options to tune the above stages 
-			booleanParam(name: 'verbose', defaultValue: false, description: 'Enable verbose mode'),
+			choice(name: 'verbose', choices: ["0", "1", "2"].join("\n"), defaultValue: "1, description: 'Enable verbose mode'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'failFast', defaultValue: false, description: 'Enable failFast option'),
 			booleanParam(name: 'pkgDeps', defaultValue: false, description: 'Enable deps packaging'),

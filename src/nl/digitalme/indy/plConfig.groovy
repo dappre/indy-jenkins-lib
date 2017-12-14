@@ -22,7 +22,7 @@ class plConfig implements Serializable {
 		docker:		'doker',
 	];
 	// Other options
-	protected Boolean verbose	= false;
+	protected Boolean verbose	= 1;
 	protected Boolean dryRun	= false;
 	protected Boolean failfast	= false;
 	protected Boolean pkgDeps	= true;
