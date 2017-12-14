@@ -22,7 +22,7 @@ def call(String name) {
 			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X'),
 			string(name: 'lbWin10', defaultValue: 'windows', description: 'Node label for Windows 10'),
 			// Distribution to build on
-			textParam(name: 'osList', defaultValue: ['ubuntu', 'centos', 'windows'],join("\n")),
+			textParam(name: 'osList', defaultValue: ['ubuntu', 'centos', 'windows'].join("\n")),
 /*			choice(
 				name: 'distribution',
 				choices: ['all', 'linux', 'unix', 'ubuntu16', 'centos7', 'macos10', 'win10'].join("\n"),
