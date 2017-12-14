@@ -8,6 +8,18 @@ def call(String name) {
 		parameters([
 			// Allow to run extended stages when triggered manually
 			booleanParam(name: 'extended', defaultValue: false, description: 'Enable extanded stages (requires extended lib)'),
+			// Distribution to build on
+//			textParam(name: 'distList', defaultValue: ['ubuntu16.x86_64', 'centos7.x86_64', 'win10.x86_64'].join("\n")),
+			textParam(name: 'distList', defaultValue: libraryResource('dist')),
+			// Label names required to run stages
+			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
+//			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X'),
+//			string(name: 'lbWin10', defaultValue: 'windows', description: 'Node label for Windows 10'),
+			// Options to tune the above stages 
+			choice(name: 'verbose', choices: ['0', '1', '2'].join("\n"), defaultValue: '1', description: 'Enable verbose mode'),
+			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
+			booleanParam(name: 'failFast', defaultValue: false, description: 'Enable failFast option'),
+			booleanParam(name: 'pkgDeps', defaultValue: false, description: 'Enable deps packaging'),
 			// Allow to skip some stages for testing purpose
 			booleanParam(name: 'skipValidate', defaultValue: false, description: 'Skip validation stage'),
 			booleanParam(name: 'skipCompile', defaultValue: false, description: 'Skip compilation stage'),
@@ -17,23 +29,6 @@ def call(String name) {
 			booleanParam(name: 'skipRelease', defaultValue: false, description: 'Skip release stage (requires extended lib)'),
 			booleanParam(name: 'skipDeliver', defaultValue: false, description: 'Skip delivery stage (requires extended lib)'),
 			booleanParam(name: 'skipNotify', defaultValue: false, description: 'Skip notification stage (requires extended lib)'),
-			// Label names required to run stages
-			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
-			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X'),
-			string(name: 'lbWin10', defaultValue: 'windows', description: 'Node label for Windows 10'),
-			// Distribution to build on
-			textParam(name: 'osList', defaultValue: ['ubuntu', 'centos', 'windows'].join("\n")),
-/*			choice(
-				name: 'distribution',
-				choices: ['all', 'linux', 'unix', 'ubuntu16', 'centos7', 'macos10', 'win10'].join("\n"),
-				defaultValue: 'linux',
-				description: 'Choose on which distribution(s) to build on'
-			),
-*/			// Options to tune the above stages 
-			choice(name: 'verbose', choices: ['0', '1', '2'].join("\n"), defaultValue: '1', description: 'Enable verbose mode'),
-			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
-			booleanParam(name: 'failFast', defaultValue: false, description: 'Enable failFast option'),
-			booleanParam(name: 'pkgDeps', defaultValue: false, description: 'Enable deps packaging'),
 			// Parameters to load the extended library
 			string(name: 'libExtRemote', defaultValue: 'https://code.digital-me.nl/git/DEVops/IndyJenkinsLibExt.git', description: 'Git URL of the shared library'),
 			string(name: 'libExtBranch', defaultValue: 'master', description: 'Git branch for the Extended shared library'),
