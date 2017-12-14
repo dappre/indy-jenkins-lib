@@ -23,14 +23,14 @@ def call(String name) {
 			string(name: 'lbWin10', defaultValue: 'windows', description: 'Node label for Windows 10'),
 			// Distribution to build on
 			textParam(name: 'osList', defaultValue: ['ubuntu', 'centos', 'windows'],join("\n")),
-			choice(
+/*			choice(
 				name: 'distribution',
 				choices: ['all', 'linux', 'unix', 'ubuntu16', 'centos7', 'macos10', 'win10'].join("\n"),
 				defaultValue: 'linux',
 				description: 'Choose on which distribution(s) to build on'
 			),
-			// Options to tune the above stages 
-			choice(name: 'verbose', choices: ["0", "1", "2"].join("\n"), defaultValue: "1, description: 'Enable verbose mode'),
+*/			// Options to tune the above stages 
+			choice(name: 'verbose', choices: ['0', '1', '2'].join("\n"), defaultValue: '1', description: 'Enable verbose mode'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'failFast', defaultValue: false, description: 'Enable failFast option'),
 			booleanParam(name: 'pkgDeps', defaultValue: false, description: 'Enable deps packaging'),
