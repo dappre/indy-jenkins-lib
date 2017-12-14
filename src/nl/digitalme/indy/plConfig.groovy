@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+package nl.digitalme.indy
+
 class plConfig implements Serializable {
 	// Project name
 	protected String name;

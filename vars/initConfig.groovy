@@ -1,6 +1,6 @@
 #!groovy
 
-package nl.digital-me.indy
+package nl.digitalme.indy
 
 def call(String name) {
 	// Define parameters and their default values
