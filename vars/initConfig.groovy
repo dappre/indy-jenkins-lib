@@ -55,7 +55,7 @@ def call(String name) {
 	])
 
 	// Instanciate a configuration object based on the parameters
-	def config = new plConfig(name, params)
+	def config = new plConfig(name, params, env.BRANCH_NAME)
 
 	// Load Extended library if available and update configuration accordingly
 	echo 'Trying to load Extended library...'

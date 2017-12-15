@@ -28,7 +28,7 @@ class plConfig implements Serializable {
 	protected Boolean pkgDeps	= true;
 	protected String branch		= 'master';
 	
-	public plConfig(String name, Map params) {
+	public plConfig(String name, Map params, String branch) {
 		name		= name;
 		extended 	= extended;
 		st = [
@@ -50,7 +50,7 @@ class plConfig implements Serializable {
 		dryRun		= params.dryRun;
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
-		if (env.BRANCH_NAME) {
+		if (branch) {
 			branch		= env.BRANCH_NAME;
 		}
 	}
