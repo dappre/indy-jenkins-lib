@@ -22,10 +22,10 @@ def valDocker(config, String dist) {
 }
 
 // Generates a Map of node to execute validation steps per distribution
-Map distNode(ArrayList dists) {
+Map distNode(config) {
 	Map mDists = [:]
 	
-	dists.each { dist ->
+	config.dists.each { dist ->
 		if (dist =~ /^(win|mac)/) {
 			echo "Validation on ${dist} not (yet) implemented"
 		} else {
@@ -49,7 +49,7 @@ def call(config, tasks = []) {
 			if (config.verbose) echo "Validation for ${config.name} begins here"
 
 			parallel(
-				distNode(config.dists)
+				distNode(config)
 //				(config.dists[0]): {
 //					node(label: config.lb.docker) {
 //						valDocker(config, config.dists[0])
