@@ -32,7 +32,7 @@ Map distNode(config) {
 			if (config.verbose) echo "Validation on ${dist} will be done via docker"
 			mDists += [
 				(dist): {
-					node(label: config.label.docker) {
+					node(label: config.labels.docker) {
 						valDocker(config, dist)
 					}
 				}
