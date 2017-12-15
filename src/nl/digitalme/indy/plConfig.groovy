@@ -8,6 +8,7 @@ class plConfig implements Serializable {
 	// Flag for the extended lib support
 	protected Boolean extended = false;
 	// Stages
+	protected ArrayList dists;
 	protected Map st = [
 		validate:	true,
 		compile:	true,
