@@ -29,7 +29,7 @@ Map distNode(config) {
 		if (dist =~ /^(win|mac)/) {
 			if (config.verbose) echo "Validation on ${dist} not (yet) implemented"
 		} else {
-			if (config.verbose) echo "Validation on ${dist} will be done via docker"
+			if (config.verbose) echo "Validation on ${dist} will be done via docker (label = ${config.labels.docker})"
 			mDists += [
 				(dist): {
 					node(label: config.labels.docker) {

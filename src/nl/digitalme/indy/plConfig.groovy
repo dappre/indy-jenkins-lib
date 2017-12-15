@@ -26,7 +26,7 @@ class plConfig implements Serializable {
 		dists		= p.listDists.split("\n")
 		stages		= p.listStages.split("\n")
 		labels = [
-			docker:		p.lbDocker,
+			docker:		p.labelDocker,
 		];
 		verbose		= p.verbose as Integer;
 		dryRun		= p.dryRun;
