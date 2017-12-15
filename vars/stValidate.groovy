@@ -12,10 +12,10 @@ def call(config, tasks = []) {
 					// Extract Dockerfile from shared lib to 'ci' folder 
 					writeFile(
 						file: 'ci/Dockerfile',
-						text: libraryResource('dist/ubuntu16/code-validation.dockerfile')
+						text: libraryResource('dist/ubuntu16.x86_64/code-validation.dockerfile')
 					)
 					// Build docker image from 'ci' folder and use flake to validate
-					docker.build('code-validation', 'ci').inside {
+					docker.build(config.name + '-code-validation-' + 'ubuntu16.x86_64' + env.BRANCH, 'ci').inside {
 						sh "python3 -m flake8"
 					}
 				}
