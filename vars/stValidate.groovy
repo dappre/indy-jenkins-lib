@@ -11,7 +11,7 @@ def call(config, tasks = []) {
 					echo 'Static code validation'
 					// Checkout the source
 					checkout scm
-					config.dist.each { dist ->
+					config.dists.each { dist ->
 						// Extract Dockerfile from shared lib to 'ci' folder
 						writeFile(
 								file: 'ci/Dockerfile',
