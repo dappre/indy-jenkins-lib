@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy​
 
 def call(config, tasks = []) {
-	if (config.stages.merge) {
+	if (config.stages.contains('merge')) {
 		stage('Merge') {
 			if (config.verbose) echo "Merging for ${config.name} begins here"
 			if (config.verbose) echo "Merging for ${config.name} ends here"

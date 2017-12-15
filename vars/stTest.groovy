@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy​
 
 def call(config, tasks = []) {
-	if (config.stages.test) {
+	if (config.stages.contains('test')) {
 		stage('Test') {
 			if (config.verbose) echo "Testing for ${config.name} begins here"
 			if (config.verbose) echo "Testing for ${config.name} ends here"
