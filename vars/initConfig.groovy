@@ -10,7 +10,7 @@ def call(String name) {
 			booleanParam(name: 'extended', defaultValue: false, description: 'Enable extanded stages (requires extended lib)'),
 			// Distribution to build on
 //			textParam(name: 'distList', defaultValue: ['ubuntu16.x86_64', 'centos7.x86_64', 'win10.x86_64'].join("\n")),
-			textParam(name: 'distList', defaultValue: libraryResource('dist')),
+			textParam(name: 'distList', defaultValue: libraryResource('dist/*')),
 			// Label names required to run stages
 			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
 //			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X'),
