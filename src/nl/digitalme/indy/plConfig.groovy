@@ -51,7 +51,7 @@ class plConfig implements Serializable {
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
 		if (branch) {
-			branch		= env.BRANCH_NAME;
+			branch		= branch;
 		}
 	}
 }
