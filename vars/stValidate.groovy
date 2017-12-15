@@ -26,17 +26,18 @@ Map distNode(ArrayList dists) {
 	Map mDists = null
 	
 	dists.each { dist ->
-	if (dist =~ /^(win|mac)/) {
-		echo "Validation on ${dist} not (yet) implemented"
-	} else {
-		echo "Validation on ${dist} will be done via docker"
-		mDists += [
-			(dist): {
-				node(label: config.lb.docker) {
-					valDocker(config, config.dists[0])
+		if (dist =~ /^(win|mac)/) {
+			echo "Validation on ${dist} not (yet) implemented"
+		} else {
+			echo "Validation on ${dist} will be done via docker"
+			mDists += [
+				(dist): {
+					node(label: config.lb.docker) {
+						valDocker(config, config.dists[0])
+					}
 				}
-			}
-		]
+			]
+		}
 	}
 	return mDists
 }
