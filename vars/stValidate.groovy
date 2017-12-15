@@ -11,13 +11,14 @@ def call(config, tasks = []) {
 					echo 'Static code validation'
 					// Checkout the source
 					checkout scm
+					String dist = 'ubuntu-16'
 					// Extract Dockerfile from shared lib to 'ci' folder 
 					writeFile(
 						file: 'ci/Dockerfile',
-						text: libraryResource('dist/ubuntu16.x86_64/code-validation.dockerfile')
+						text: libraryResource('dist/' + dist + '/validate.dockerfile')
 					)
 					// Build docker image from 'ci' folder and use flake to validate
-					docker.build(config.name + '-code-validation-' + 'ubuntu16.x86_64' + '-' + config.branch, 'ci').inside {
+					docker.build(config.name + '-validate-' + dist + ':' + config.branch, 'ci').inside {
 						sh "python3 -m flake8"
 					}
 				}

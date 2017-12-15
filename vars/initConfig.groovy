@@ -15,9 +15,10 @@ def call(String name) {
 	]
 
 	static final ArrayList dists = [
-		'ubuntu-16.x86_64',
-		'centos-7.x86_64',
-		'win-10.x86_64',
+		'ubuntu-16',
+		'centos-7',
+//		'macosx-10',
+//		'windows-10',
 	]
 
 	// Define parameters and their default values
@@ -27,12 +28,10 @@ def call(String name) {
 			booleanParam(name: 'extended', defaultValue: false, description: 'Enable extended stages (requires extended lib)'),
 			// Distribution to build on
 			textParam(name: 'distList', defaultValue: dists.join("\n"), description: 'List of distribution to use'),
-			//			textParam(name: 'distList', defaultValue: ['ubuntu16.x86_64', 'centos7.x86_64', 'win10.x86_64'].join("\n")),
-			//			textParam(name: 'distList', defaultValue: libraryResource('dist/*')),
 			// Label names required to run stages
 			string(name: 'lbDocker', defaultValue: 'docker', description: 'Node label to run docker commands'),
-			//			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X'),
-			//			string(name: 'lbWin10', defaultValue: 'windows', description: 'Node label for Windows 10'),
+			//			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X 10'),
+			//			string(name: 'lbWindows10', defaultValue: 'windows', description: 'Node label for Windows 10'),
 			// Options to tune the above stages
 			choice(name: 'verbose', choices: ['0', '1', '2'].join("\n"), defaultValue: '1', description: 'Control verbosity'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),

@@ -1,8 +1,6 @@
 # Development
 FROM ubuntu:16.04
 
-ARG uid=1000
-
 # Install environment
 RUN apt-get update -y
 RUN apt-get install -y \ 
