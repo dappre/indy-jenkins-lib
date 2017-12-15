@@ -2,7 +2,7 @@
 
 package nl.digitalme.indy
 
-def valLinux(String dist) {
+def valLinux(config, String dist) {
 	echo "Static code validation on ${dist}"
 	// Checkout the source
 	checkout scm
@@ -28,12 +28,12 @@ def call(config, tasks = []) {
 			parallel(
 				(config.dists[0]): {
 					node(label: config.lb.docker) {
-						valLinux(config.dists[0])
+						valLinux(config, config.dists[0])
 					}
 				},
 				(config.dists[1]): {
 					node(label: config.lb.docker) {
-						valLinux(config.dists[1])
+						valLinux(config, config.dists[1])
 					}
 				}
 			)
