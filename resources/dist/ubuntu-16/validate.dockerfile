@@ -29,12 +29,16 @@ RUN apt-get install -y \
 	wget \
 	unzip
 
-# Install Python 3.5 
+# Install Python 3.5
 RUN apt-get install -y \
 	python3.5 \
 	python3-pip \
-	python3-tools \
-	python3-setuptools
+	python3-setuptools \
+
+# Install some Python dev tools
+RUN apt-get install -y \
+	python3.5-dev \
+	python3-nacl
 
 # Install and update modules for validation
 RUN pip3.5 install -U \ 

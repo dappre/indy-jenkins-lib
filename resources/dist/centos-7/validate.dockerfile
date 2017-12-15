@@ -31,10 +31,15 @@ RUN yum -y install \
 
 # Install Python 3.5 from PIUS repo
 RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm && yum -y install \
+	python35u \
 	python35u-pip \
-	python35u-tools \
-	python35u-setuptools \
-	python35u-libs
+	python35u-setuptools
+
+# Install some Python dev tools
+RUN yum -y install \
+	python35u-devel \
+	python35u-libs \
+	python35u-tools
 
 # Install and update modules for validation
 RUN pip3.5 install -U \ 
