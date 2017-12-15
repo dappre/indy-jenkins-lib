@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy​
 
+package nl.digitalme.indy
+
 def call(config, tasks = []) {
 	if (config.st.validate) {
 		stage('Validate') {
@@ -15,7 +17,7 @@ def call(config, tasks = []) {
 						text: libraryResource('dist/ubuntu16.x86_64/code-validation.dockerfile')
 					)
 					// Build docker image from 'ci' folder and use flake to validate
-					docker.build(config.name + '-code-validation-' + 'ubuntu16.x86_64' + env.BRANCH, 'ci').inside {
+					docker.build(config.name + '-code-validation-' + 'ubuntu16.x86_64' + '-' + config.branch, 'ci').inside {
 						sh "python3 -m flake8"
 					}
 				}

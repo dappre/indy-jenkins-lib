@@ -26,6 +26,7 @@ class plConfig implements Serializable {
 	protected Boolean dryRun	= false;
 	protected Boolean failfast	= false;
 	protected Boolean pkgDeps	= true;
+	protected String branch		= 'master';
 	
 	public plConfig(String name, Map params) {
 		name		= name;
@@ -47,5 +48,8 @@ class plConfig implements Serializable {
 		dryRun		= params.dryRun;
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
+		if (env.BRANCH_NAME) {
+			branch		= env.BRANCH_NAME;
+		}
 	}
 }
