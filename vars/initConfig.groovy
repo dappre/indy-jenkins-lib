@@ -33,7 +33,7 @@ def call(String name) {
 			//			string(name: 'lbMacOS10', defaultValue: 'mac', description: 'Node label for Mac OS X 10'),
 			//			string(name: 'lbWindows10', defaultValue: 'windows', description: 'Node label for Windows 10'),
 			// Options to tune the above stages
-			choice(name: 'verbose', choices: ['0', '1', '2'].join("\n"), defaultValue: '1', description: 'Control verbosity'),
+			choice(name: 'verbose', choices: ['1', '2', '0'].join("\n"), defaultValue: '1', description: 'Control verbosity'),
 			booleanParam(name: 'dryRun', defaultValue: false, description: 'Enable dryRun mode (no external changes, only show what should be done)'),
 			booleanParam(name: 'failFast', defaultValue: false, description: 'Enable failFast option'),
 			booleanParam(name: 'pkgDeps', defaultValue: false, description: 'Enable deps packaging'),
