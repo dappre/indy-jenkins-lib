@@ -31,6 +31,7 @@ class plConfig implements Serializable {
 	public plConfig(String n, Map p, String b) {
 		name		= n;
 		extended 	= extended;
+		dists		= p.distList.split("\n")
 		st = [
 			validate:	!p.skipValidate,
 			compile:	!p.skipCompile,
