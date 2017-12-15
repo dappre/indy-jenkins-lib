@@ -2,7 +2,7 @@
 
 package nl.digitalme.indy
 
-static final Map stages = [
+public static final Map stages = [
 	'merge',
 	'validate',
 	'test',
@@ -13,7 +13,7 @@ static final Map stages = [
 	'notify',
 ]
 
-static final Map dists = [
+public static final Map dists = [
 	'ubuntu-16.x86_64',
 	'centos-7.x86_64',
 	'win-10.x86_64',
