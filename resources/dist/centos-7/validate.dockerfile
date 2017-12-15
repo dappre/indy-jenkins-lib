@@ -1,5 +1,5 @@
 # Pull base image from official repo
-FROM centos:centos7.3.1611
+FROM centos:centos7.4.1708
 
 # Install all current updates
 RUN yum -y upgrade
@@ -18,7 +18,7 @@ RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm && yum -y in
 	python35u-libs
 
 # Install and update modules for validation
-RUN pip3 install -U \ 
+RUN pip3.5 install -U \ 
 	pip \ 
 	setuptools \
 	pep8 \
