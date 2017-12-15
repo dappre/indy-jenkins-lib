@@ -22,7 +22,7 @@ class plConfig implements Serializable {
 		docker:		'doker',
 	];
 	// Other options
-	protected Boolean verbose	= 1;
+	protected Integer verbose	= 1;
 	protected Boolean dryRun	= false;
 	protected Boolean failfast	= false;
 	protected Boolean pkgDeps	= true;
@@ -44,7 +44,9 @@ class plConfig implements Serializable {
 		lb = [
 			docker:		params.lbDocker,
 		];
-		verbose		= params.verbose;
+		if (params.verbose.isInteger()) {
+			verbose		= params.verbose as Integer;
+		}
 		dryRun		= params.dryRun;
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
