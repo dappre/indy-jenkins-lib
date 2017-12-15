@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 //package nl.digitalme.indy
+import nl.digitalme.indy.plConfig
 
 // Return ArrayList of defined distributions
 def listDists() {
