@@ -28,8 +28,8 @@ class plConfig implements Serializable {
 	protected Boolean pkgDeps	= true;
 	protected String branch		= 'master';
 	
-	public plConfig(String name, Map params, String branch) {
-		name		= name;
+	public plConfig(String n, Map p, String b) {
+		name		= n;
 		extended 	= extended;
 		st = [
 			validate:	!params.skipValidate,
@@ -51,7 +51,7 @@ class plConfig implements Serializable {
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
 		if (branch) {
-			branch		= branch;
+			branch		= b;
 		}
 	}
 }
