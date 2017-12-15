@@ -28,6 +28,7 @@ class plConfig implements Serializable {
 	protected Boolean pkgDeps	= true;
 	protected String branch		= 'master';
 	
+	@NonCPS
 	public plConfig(String name, Map params) {
 		name		= name;
 		extended 	= extended;
