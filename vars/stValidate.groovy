@@ -2,7 +2,8 @@
 
 package nl.digitalme.indy
 
-def valLinux(config, String dist) {
+// Validation step for Linux distribution on Docker
+def valDocker(config, String dist) {
 	echo "Static code validation on ${dist}"
 	// Checkout the source
 	checkout scm
@@ -20,22 +21,43 @@ def valLinux(config, String dist) {
 	}
 }
 
+// Generates a Map of node to execute validation steps per distribution
+Map distNode(ArrayList dists) {
+	Map mDists = null
+	
+	dists.each { dist ->
+	if (dist =~ /^(win|mac)/) {
+		echo "Validation on ${dist} not (yet) implemented"
+	} else {
+		echo "Validation on ${dist} will be done via docker"
+		mDists += [
+			(dist): {
+			node(label: config.lb.docker) {
+				valDocker(config, config.dists[0])
+			}
+		]
+	}
+	return mDists
+}
+
+// Default method
 def call(config, tasks = []) {
 	if (config.st.validate) {
 		stage('Validate') {
 			if (config.verbose) echo "Validation for ${config.name} begins here"
 
 			parallel(
-				(config.dists[0]): {
-					node(label: config.lb.docker) {
-						valLinux(config, config.dists[0])
-					}
-				},
-				(config.dists[1]): {
-					node(label: config.lb.docker) {
-						valLinux(config, config.dists[1])
-					}
-				}
+				distNode(config.dists)
+//				(config.dists[0]): {
+//					node(label: config.lb.docker) {
+//						valDocker(config, config.dists[0])
+//					}
+//				},
+//				(config.dists[1]): {
+//					node(label: config.lb.docker) {
+//						valDocker(config, config.dists[1])
+//					}
+//				}
 			)
 		}
 		if (config.verbose) echo "Validation for ${config.name} ends here"
