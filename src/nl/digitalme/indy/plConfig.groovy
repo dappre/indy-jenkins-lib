@@ -9,18 +9,9 @@ class plConfig implements Serializable {
 	protected Boolean extended = false;
 	// Stages
 	protected ArrayList dists;
-	protected Map st = [
-		validate:	true,
-		compile:	true,
-		test:		true,
-		package:	true,
-		approve:	true,
-		release:	true,
-		deliver:	true,
-		notify:		true,
-	];
-	protected Map lb = [
-		docker:		'doker',
+	protected ArrayList stages;
+	protected Map labels = [
+		docker:		'docker',
 	];
 	// Other options
 	protected Integer verbose	= 1;
@@ -32,23 +23,12 @@ class plConfig implements Serializable {
 	public plConfig(String n, Map p, String b) {
 		name		= n;
 		extended 	= extended;
-		dists		= p.distList.split("\n")
-		st = [
-			validate:	!p.skipValidate,
-			compile:	!p.skipCompile,
-			test:		!p.skipTest,
-			package:	!p.skipPackage,
-			approve:	!p.skipApprove,
-			release:	!p.skipRelease,
-			deliver:	!p.skipDeliver,
-			notify:		!p.skipNotify,
-		];
-		lb = [
+		dists		= p.listDists.split("\n")
+		stages		= p.listStages.split("\n")
+		labels = [
 			docker:		p.lbDocker,
 		];
-//		if (p.verbose.isInteger()) {
-			verbose		= p.verbose as Integer;
-//		}
+		verbose		= p.verbose as Integer;
 		dryRun		= p.dryRun;
 		failfast	= p.failFast;
 		pkgDeps		= p.pkgDeps;
