@@ -37,6 +37,7 @@ RUN apt-get install -y \
 
 # Install some Python dev tools
 RUN apt-get install -y \
+	python-setuptools \
 	python3.5-dev \
 	python3-nacl
 
