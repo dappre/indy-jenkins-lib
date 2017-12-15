@@ -33,7 +33,7 @@ RUN apt-get install -y \
 RUN apt-get install -y \
 	python3.5 \
 	python3-pip \
-	python3-setuptools \
+	python3-setuptools
 
 # Install some Python dev tools
 RUN apt-get install -y \
