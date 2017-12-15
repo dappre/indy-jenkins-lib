@@ -32,8 +32,9 @@ Map distNode(ArrayList dists) {
 		echo "Validation on ${dist} will be done via docker"
 		mDists += [
 			(dist): {
-			node(label: config.lb.docker) {
-				valDocker(config, config.dists[0])
+				node(label: config.lb.docker) {
+					valDocker(config, config.dists[0])
+				}
 			}
 		]
 	}
