@@ -19,7 +19,7 @@ def call(config, tasks = []) {
 					)
 					// Build docker image from 'ci' folder and use flake to validate
 					docker.build(config.name + '-validate-' + dist + ':' + config.branch, 'ci').inside {
-						sh "python3 -m flake8"
+						sh "python3.5 -m flake8"
 					}
 				}
 				finally {
