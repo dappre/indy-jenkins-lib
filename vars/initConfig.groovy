@@ -3,7 +3,7 @@
 package nl.digitalme.indy
 
 def call(String name) {
-	static final ArrayList stages = [
+	final ArrayList stages = [
 		'merge',
 		'validate',
 		'test',
@@ -14,7 +14,7 @@ def call(String name) {
 		'notify',
 	]
 
-	static final ArrayList dists = [
+	final ArrayList dists = [
 		'ubuntu-16.x86_64',
 		'centos-7.x86_64',
 		'win-10.x86_64',
