@@ -8,13 +8,13 @@ def valDocker(config, String dist) {
 	// Checkout the source
 	checkout scm
 	try {
-		// Extract Dockerfile from shared lib to 'ci' folder
+		// Extract Dockerfile from shared lib to root workspace folder
 		writeFile(
-			file: 'ci/Dockerfile',
+			file: 'Dockerfile',
 			text: libraryResource('dist/' + dist + '/validate.dockerfile')
 		)
-		// Build docker image from 'ci' folder and use flake to validate
-		docker.build(config.name + '-validate-' + dist + ':' + config.branch, 'ci').inside { sh "python3.5 -m flake8" }
+		// Build docker image from 'ci' folder and use flake to validate to whole workspace
+		docker.build(config.name + '-validate-' + dist + ':' + config.branch, '.').inside { sh "python3.5 -m flake8" }
 	} finally {
 		if (config.verbose) echo "Static code validation on ${dist}: Cleanup"
 		step([$class: 'WsCleanup'])
