@@ -20,14 +20,14 @@ def call(config, tasks = []) {
 			// Checkout the source
 			checkout scm
 			parallel(
-			config.dists[0]: {
+			(config.dists[0]): {
 				node(label: config.lb.docker) {
 					try {
 						stLinux(config.dists[0])
 					}
 				}
 			},
-			config.dists[1]: {
+			(config.dists[1]): {
 				node(label: config.lb.docker) {
 					try {
 						stLinux(config.dists[1])
