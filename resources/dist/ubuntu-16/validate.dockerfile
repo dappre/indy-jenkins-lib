@@ -42,7 +42,7 @@ RUN apt-get install -y \
 	python3-nacl
 
 # Install and update modules for validation
-RUN pip3.5 install -U \ 
+RUN pip3 install -U \ 
 	pip \ 
 	setuptools \
 	pep8 \
