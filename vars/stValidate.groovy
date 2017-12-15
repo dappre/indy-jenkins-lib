@@ -11,7 +11,7 @@ def call(config, tasks = []) {
 					echo 'Static code validation'
 					// Checkout the source
 					checkout scm
-					String dist = 'ubuntu-16'
+					String dist = 'centos-7'
 					// Extract Dockerfile from shared lib to 'ci' folder 
 					writeFile(
 						file: 'ci/Dockerfile',
