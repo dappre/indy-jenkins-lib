@@ -32,25 +32,25 @@ class plConfig implements Serializable {
 		name		= n;
 		extended 	= extended;
 		st = [
-			validate:	!params.skipValidate,
-			compile:	!params.skipCompile,
-			test:		!params.skipTest,
-			package:	!params.skipPackage,
-			approve:	!params.skipApprove,
-			release:	!params.skipRelease,
-			deliver:	!params.skipDeliver,
-			notify:		!params.skipNotify,
+			validate:	!p.skipValidate,
+			compile:	!p.skipCompile,
+			test:		!p.skipTest,
+			package:	!p.skipPackage,
+			approve:	!p.skipApprove,
+			release:	!p.skipRelease,
+			deliver:	!p.skipDeliver,
+			notify:		!p.skipNotify,
 		];
 		lb = [
-			docker:		params.lbDocker,
+			docker:		p.lbDocker,
 		];
-//		if (params.verbose.isInteger()) {
-			verbose		= params.verbose as Integer;
+//		if (p.verbose.isInteger()) {
+			verbose		= p.verbose as Integer;
 //		}
-		dryRun		= params.dryRun;
-		failfast	= params.failFast;
-		pkgDeps		= params.pkgDeps;
-		if (branch) {
+		dryRun		= p.dryRun;
+		failfast	= p.failFast;
+		pkgDeps		= p.pkgDeps;
+		if (b) {
 			branch		= b;
 		}
 	}
