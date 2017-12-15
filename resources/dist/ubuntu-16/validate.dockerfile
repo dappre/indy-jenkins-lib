@@ -33,11 +33,11 @@ RUN apt-get install -y \
 RUN apt-get install -y \
 	python3.5 \
 	python3-pip \
-	python-setuptools \
-	python3-nacl
+	python3-tools \
+	python3-setuptools
 
 # Install and update modules for validation
-RUN pip3 install -U \ 
+RUN pip3.5 install -U \ 
 	pip \ 
 	setuptools \
 	pep8 \
