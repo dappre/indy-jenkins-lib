@@ -44,7 +44,7 @@ Map distNode(config) {
 
 // Default method
 def call(config, tasks = []) {
-	if (config.stages.validate) {
+	if (config.stages.contains('validate')) {
 		stage('Validate') {
 			if (config.verbose) echo "Validation for ${config.name} begins here"
 			parallel(distNode(config))
