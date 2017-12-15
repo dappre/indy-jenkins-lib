@@ -23,7 +23,7 @@ def valDocker(config, String dist) {
 
 // Generates a Map of node to execute validation steps per distribution
 Map distNode(ArrayList dists) {
-	Map mDists = null
+	Map mDists = []
 	
 	dists.each { dist ->
 		if (dist =~ /^(win|mac)/) {
