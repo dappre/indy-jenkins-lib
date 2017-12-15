@@ -2,7 +2,7 @@
 
 package nl.digitalme.indy
 
-def stLinux(String dist) {
+def valLinux(String dist) {
 	// Extract Dockerfile from shared lib to 'ci' folder
 	writeFile(
 			file: 'ci/Dockerfile',
@@ -19,25 +19,22 @@ def call(config, tasks = []) {
 			echo 'Static code validation'
 			// Checkout the source
 			checkout scm
-			parallel(
-			(config.dists[0]): {
-				node(label: config.lb.docker) {
-					try {
-						stLinux(config.dists[0])
-					}
-				}
-			},
-			(config.dists[1]): {
-				node(label: config.lb.docker) {
-					try {
-						stLinux(config.dists[1])
-					}
-				}
-			})
-			//				finally {
-			echo 'Static code validation: Cleanup'
-			step([$class: 'WsCleanup'])
-			//				}
+			try {
+				parallel(
+					(config.dists[0]): {
+						node(label: config.lb.docker) {
+							valLinux(config.dists[0])
+						}
+					},
+					(config.dists[1]): {
+						node(label: config.lb.docker) {
+							valLinux(config.dists[1])
+						}
+					})
+			} finally {
+				echo 'Static code validation: Cleanup'
+				step([$class: 'WsCleanup'])
+			}
 		}
 		if (config.verbose) echo "Validation for ${config.name} ends here"
 	} else {
