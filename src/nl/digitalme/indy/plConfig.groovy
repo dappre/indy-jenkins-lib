@@ -28,7 +28,6 @@ class plConfig implements Serializable {
 	protected Boolean pkgDeps	= true;
 	protected String branch		= 'master';
 	
-	@NonCPS
 	public plConfig(String name, Map params) {
 		name		= name;
 		extended 	= extended;
@@ -45,9 +44,9 @@ class plConfig implements Serializable {
 		lb = [
 			docker:		params.lbDocker,
 		];
-		if (params.verbose.isInteger()) {
+//		if (params.verbose.isInteger()) {
 			verbose		= params.verbose as Integer;
-		}
+//		}
 		dryRun		= params.dryRun;
 		failfast	= params.failFast;
 		pkgDeps		= params.pkgDeps;
