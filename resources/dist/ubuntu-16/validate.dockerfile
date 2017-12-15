@@ -1,15 +1,23 @@
-# Development
+# Pull base image from official repo
 FROM ubuntu:16.04
 
-# Install environment
+# Install all current updates
 RUN apt-get update -y
-RUN apt-get install -y \ 
+
+# Install common requirements
+RUN apt-get install -y \
 	git \
 	wget \
+	unzip
+
+# Install Python 3.5 
+RUN apt-get install -y \
 	python3.5 \
 	python3-pip \
 	python-setuptools \
 	python3-nacl
+
+# Install and update modules for validation
 RUN pip3 install -U \ 
 	pip \ 
 	setuptools \
